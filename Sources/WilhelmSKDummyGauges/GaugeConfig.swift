@@ -20,6 +20,10 @@ open class GaugeConfig :NSObject {
   }
 }
 
+open class Fusion : GaugeConfig
+{
+}
+
 open class ElectricalOverviewGauge : GaugeConfig {
   
   public override init(_ customizations: [String : Any])
