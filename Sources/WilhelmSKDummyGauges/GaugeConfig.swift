@@ -9,10 +9,14 @@ import Foundation
 import WilhelmSKLibrary
 
 open class GaugeConfig :NSObject {
-  public var customizations: [String: Any]
+  open var customizations: [String: Any]
+  open var signalKPath: String
+  open var title: String
   
   public init(_ customizations: [String : Any]) {
     self.customizations = customizations
+    self.signalKPath = customizations["signalKPath"] as! String
+    self.title = customizations["title"] as? String ?? ""
   }
 }
 
