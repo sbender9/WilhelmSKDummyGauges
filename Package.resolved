@@ -1,15 +1,14 @@
 {
-  "originHash" : "bf7b8e62f5473c957778e51207c483cf5485e5162c703044161c2983a09efa05",
   "pins" : [
     {
       "identity" : "wilhelmsklibrary",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/sbender9/WilhelmSKLibrary",
       "state" : {
-        "revision" : "0d1287ec36fba936c74c9c6c3fe0a6fba9830772",
-        "version" : "0.0.5"
+        "revision" : "63343645fc4206cc36e91ae5e440e349c7ebfa62",
+        "version" : "1.0.0"
       }
     }
   ],
-  "version" : 3
+  "version" : 2
 }

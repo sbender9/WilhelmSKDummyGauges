@@ -16,7 +16,7 @@ let package = Package(
     ],
     dependencies: [
       //.package(path: "../WilhelmSKLibrary"),
-      .package(url: "https://github.com/sbender9/WilhelmSKLibrary", .upToNextMajor(from: "0.0.5")),
+      .package(url: "https://github.com/sbender9/WilhelmSKLibrary", .upToNextMajor(from: "1.0.0")),
     ],
 
     targets: [
