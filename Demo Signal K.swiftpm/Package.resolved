@@ -1,0 +1,23 @@
+{
+  "pins" : [
+    {
+      "identity" : "wilhelmskdummygauges",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/sbender9/WilhelmSKDummyGauges",
+      "state" : {
+        "revision" : "fd08f5591da44f865d644360120dd998eab7200d",
+        "version" : "1.0.1"
+      }
+    },
+    {
+      "identity" : "wilhelmsklibrary",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/sbender9/WilhelmSKLibrary",
+      "state" : {
+        "revision" : "4e912640e137e131a4fe7c449ac664d7753b3023",
+        "version" : "1.0.1"
+      }
+    }
+  ],
+  "version" : 2
+}
