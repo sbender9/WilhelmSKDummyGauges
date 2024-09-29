@@ -15,7 +15,7 @@ open class GaugeConfig :NSObject {
   
   public init(_ customizations: [String : Any]) {
     self.customizations = customizations
-    self.signalKPath = customizations["signalKPath"] as! String
+    self.signalKPath = customizations["signalKPath"] as? String ?? ""
     self.title = customizations["title"] as? String ?? ""
   }
 }
@@ -38,7 +38,7 @@ open class ElectricalOverviewGauge : GaugeConfig {
   }
   
   public func getPath(_ path: String) -> String? {
-    return self.customizations[path] as! String
+    return self.customizations[path] as? String
   }
   
   public func getSource(_ path: String) -> String? {
@@ -46,33 +46,3 @@ open class ElectricalOverviewGauge : GaugeConfig {
   }
 }
 
-open class Theme : NSObject {
-  override public init()
-  {
-  }
-  
-  public static func defaultTheme() -> Theme
-  {
-    return Theme()
-  }
-  
-  /*
-  public static func darkTheme()
-  {
-  
-  }
-  
-  public static func lightTheme()
-  {
-  }
-  
-  public static func redTheme()
-  {
-  }
-  
-  public static func blueTheme()
-  {
-  }
-   */
-
-}
