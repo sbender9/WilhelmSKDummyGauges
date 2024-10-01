@@ -10,12 +10,16 @@ import WilhelmSKLibrary
 
 @available(iOS 17, *)
 public extension GaugeConfig {
-  open func getObservableSelfPath(_ boat: WilhelmSKLibrary.SignalKBase, path: String?, source: String? = nil) -> ObservedObject<SKValue> {
+  open func getObservableSelfPath<T>(_ boat: WilhelmSKLibrary.SignalKBase, path: String?, source: String? = nil) -> ObservedObject<SKValue<T>> {
     guard let path else {
-      let dummy = WilhelmSKLibrary.SKValue(SKPathInfo("xsome.path", meta: nil), value: 0.0)
-      return ObservedObject(wrappedValue:dummy)
+      let dummy = WilhelmSKLibrary.SKValue(SKPathInfo("xsome.path", meta: nil), value: nil )as? SKValue<T>
+      return ObservedObject(wrappedValue:dummy as! SKValue<T>)
     }
     return ObservedObject(wrappedValue:boat.getObservableSelfPath(path, source: source))
+  }
+  
+  func getSelfPath<T>(_ boat: SignalKBase, path: String, source: String?, completion: @escaping (Bool, SKValueBase, Error?) -> Void ) -> ObservedObject<SKValue<T>> {
+    return ObservedObject(wrappedValue:boat.getSelfPath(path, source: source, completion: completion))
   }
 }
 
@@ -35,9 +39,9 @@ public extension Text {
 }
 
 @available(iOS 17, *)
-struct FitToWidth: ViewModifier {
+public struct FitToWidth: ViewModifier {
   var fraction: CGFloat = 1.0
-  func body(content: Content) -> some View {
+  public func body(content: Content) -> some View {
     GeometryReader { g in
       content
         .font(.system(size: 1000))
@@ -48,6 +52,30 @@ struct FitToWidth: ViewModifier {
     }
   }
 }
+
+public struct HideViewModifier: ViewModifier {
+  let hide: Bool
+  
+  public func body(content: Content) -> some View {
+    Group {
+      if !hide {
+        content
+      }
+      /*if hide {
+       EmptyView()
+       } else {
+       content
+       }*/
+    }
+  }
+}
+
+public extension View {
+  public func hide(_ bool: Bool) -> some View {
+    modifier(HideViewModifier(hide: bool))
+  }
+}
+
 
 private func secondsToTimeString(_ input: Double?, includeHours: Bool = true) -> String
 {
