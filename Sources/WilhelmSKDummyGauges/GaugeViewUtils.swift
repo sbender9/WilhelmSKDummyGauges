@@ -10,10 +10,10 @@ import WilhelmSKLibrary
 
 @available(iOS 17, *)
 public extension GaugeConfig {
-  open func getObservableSelfPath<T>(_ boat: WilhelmSKLibrary.SignalKBase, path: String?, source: String? = nil) -> ObservedObject<SKValue<T>> {
+  func getObservableSelfPath<T>(_ boat: WilhelmSKLibrary.SignalKBase, path: String?, source: String? = nil) -> ObservedObject<SKValue<T>> {
     guard let path else {
-      let dummy = WilhelmSKLibrary.SKValue(SKPathInfo("xsome.path", meta: nil), value: nil )as? SKValue<T>
-      return ObservedObject(wrappedValue:dummy as! SKValue<T>)
+      let dummy = WilhelmSKLibrary.SKValue(SKPathInfo("xsome.path", meta: nil), value: nil ) as? SKValue<T>
+      return ObservedObject(wrappedValue:dummy!)
     }
     return ObservedObject(wrappedValue:boat.getObservableSelfPath(path, source: source))
   }
@@ -23,6 +23,7 @@ public extension GaugeConfig {
   }
 }
 
+#if ENABLE_ENVIRONMENT
 @available(iOS 17, *)
 public extension EnvironmentValues {
   @Entry var theme: Theme = Theme.theDefault()
@@ -30,6 +31,7 @@ public extension EnvironmentValues {
   @Entry var boat: SignalKBase? = nil
   @Entry var inWidget: Bool = false
 }
+#endif
 
 @available(iOS 17, *)
 public extension Text {
@@ -71,7 +73,7 @@ public struct HideViewModifier: ViewModifier {
 }
 
 public extension View {
-  public func hide(_ bool: Bool) -> some View {
+  func hide(_ bool: Bool) -> some View {
     modifier(HideViewModifier(hide: bool))
   }
 }

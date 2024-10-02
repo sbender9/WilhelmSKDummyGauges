@@ -82,8 +82,11 @@ extension ShapeStyle where Self == Color {
 @available(iOS 17, *)
 public struct TextColorShapeStyle: ShapeStyle {
   public func resolve(in environment: EnvironmentValues) -> some ShapeStyle {
+#if ENABLE_ENVIRONMENT
     Color.wSKtext(environment.theme)
-    //Color.white
+#else
+    Color.primary
+#endif
   }
 }
 
